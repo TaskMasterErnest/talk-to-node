@@ -2,20 +2,14 @@ pipeline {
   agent any
 
   stages {
-#      stage('Build Artifact') {
-#            steps {
-#              sh "mvn clean package -DskipTests=true"
-#              archive 'target/*.jar' //so that they can be downloaded later
-#            }
-#        }   
-    stage('Check versions') {
-    	steps {
-		echo "Here they are:"
-		sh 'sudo docker version'
-		sh 'mvn version'
-		sh 'git version'
-		sh 'kubectl version && kubelete version'
+		
+		stage('Check Versions') {
+			steps {
+				sh 'sudo docker version'
+				sh 'git version'
+				sh 'mvn version'
+				sh 'kubectl version && kubelet version'
+			}
+		}
 	}
-    }
-}
 }
