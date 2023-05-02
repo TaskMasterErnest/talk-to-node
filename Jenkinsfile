@@ -8,7 +8,7 @@ pipeline {
 				sh 'sudo docker version'
 				sh 'git version'
 				sh 'mvn -v'
-				sh 'kubectl version && kubelet version'
+				sh 'sudo kubectl version && sudo kubelet version --short'
 			}
 		}
 	}
