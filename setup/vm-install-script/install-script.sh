@@ -65,7 +65,8 @@ kubectl taint node $(kubectl get nodes -o=jsonpath='{.items[].metadata.name}')  
 kubectl get node -o wide
 
 echo ".........----------------#################._.-.-Java and MAVEN-.-._.#################----------------........."
-sudo apt install openjdk-8-jdk -y
+sudo apt-get purge openjdk* -y
+sudo apt install openjdk-11-jdk -y
 java -version
 sudo apt install -y maven
 mvn -v
