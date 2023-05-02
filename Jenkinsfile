@@ -8,9 +8,7 @@ pipeline {
 				sh 'sudo docker version'
 				sh 'git version'
 				sh 'mvn -v'
-				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false) {
-    			sh 'sudo kubectl get nodes'
-				}
+    		sh 'sudo kubectl get nodes'
 			}
 		}
 	}
