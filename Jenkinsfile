@@ -10,6 +10,7 @@ pipeline {
 #        }   
     stage('Check versions') {
     	steps {
+		echo "Here they are:"
 		sh 'sudo docker version'
 		sh 'mvn version'
 		sh 'git version'
