@@ -21,7 +21,7 @@ echo ".........----------------#################._.-.-INSTALL KUBEADM KUBERNETES
 
 KUBE_VERSION=1.26.0
 apt-get update
-apt-get install -y kubelet=${KUBE_VERSION}-00 vim build-essential jq python3-pip docker.io kubectl=${KUBE_VERSION}-00 kubernetes-cni=0.8.7-00 kubeadm=${KUBE_VERSION}-00
+apt-get install -y kubelet=${KUBE_VERSION}-00 vim build-essential jq python3-pip docker.io kubectl=${KUBE_VERSION}-00 kubernetes-cni=1.1.1-00 kubeadm=${KUBE_VERSION}-00
 pip3 install jc
 
 ### UUID of VM 
