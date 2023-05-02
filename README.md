@@ -1,4 +1,6 @@
-# kubernetes-devops-security
+A DEVSECOPS pipeline from development to production using a NodeJS app.
+
+# jenkins-kubernetes-devops-security
 
 ## Fork and Clone this Repo
 - To be able to use this repo, you must either fork or clone it. I suggest you clone it, if you want to go through with the challenge alone.
