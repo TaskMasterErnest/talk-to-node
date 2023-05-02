@@ -7,7 +7,7 @@ pipeline {
 			steps {
 				sh 'sudo docker version'
 				sh 'git version'
-				sh 'mvn version'
+				sh 'mvn -v'
 				sh 'kubectl version && kubelet version'
 			}
 		}
