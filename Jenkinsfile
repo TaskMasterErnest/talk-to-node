@@ -8,7 +8,7 @@ pipeline {
 				sh 'sudo docker version'
 				sh 'git version'
 				sh 'mvn -v'
-				withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-config', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: 'https://10.128.0.9:6443') {
     			sh 'sudo kubectl get nodes'
 				}
 			}
