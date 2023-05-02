@@ -8,7 +8,9 @@ pipeline {
 				sh 'sudo docker version'
 				sh 'git version'
 				sh 'mvn -v'
-				sh 'sudo kubectl version && sudo kubelet version --short'
+				withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-config', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+    			sh 'sudo kubectl version && sudo kubelet version --short'
+				}
 			}
 		}
 	}
