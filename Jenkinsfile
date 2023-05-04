@@ -23,9 +23,8 @@ pipeline {
 
 		stage('Build & Push - Docker') {
 			steps {
-				withDockerRegistry(credentialsId: 'docker-creds') {
-				sh 'sudo docker build -t ernestklu/numeric-application:""$GIT_COMMIT"" .'
-				bat 'sudo docker push ernestklu/numeric-application:""$GIT_COMMIT""'
+				docker.withDockerRegistry(credentialsId: 'docker-creds') {
+					docker.build('ernestklu/numeric-app:""$GIT_COMMIT""').push('ernestklu/numeric-app:""$GIT_COMMIT""')
 				}
 			}
 		}
