@@ -82,12 +82,11 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<targetClasses>
-						<mutationThreshold>70</mutationThreshold>
-			      <outputFormats>
-								<outputFormat>XML</outputFormat>
-								<outputFormat>HTML</outputFormat>
-			      </outputFormats>
+					<mutationThreshold>70</mutationThreshold>
+					<outputFormats>
+						<outputFormat>XML</outputFormat>
+						<outputFormat>HTML</outputFormat>
+					</outputFormats>
 				</configuration>
 			</plugin>
 			
