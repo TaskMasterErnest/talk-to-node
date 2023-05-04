@@ -9,13 +9,14 @@ pipeline {
 			}
 		}
 
-		stage('Version Check') {
+		stage('Test - JaCoCo and JUnit') {
 			steps {
-				sh 'sudo docker version'
-				sh 'git version'
-				sh 'mvn -v'
-				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh 'kubectl version --short'
+				sh 'mvn test'
+			}
+			post {
+				always {
+					junit 'target/surefire-reports/*.xml'
+					jacoco execPattern: 'target/jacoco.exec'
 				}
 			}
 		}
