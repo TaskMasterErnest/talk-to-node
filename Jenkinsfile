@@ -2,6 +2,12 @@ pipeline {
 	agent any
 
 	stages {
+		stage('Build Artifacts - Maven') {
+			steps {
+				sh "mvn clean package -DskipTests=true"
+				archive 'target/*.jar' //persisting the jar file for later downloads
+			}
+		}
 
 		stage('Version Check') {
 			steps {
@@ -13,5 +19,6 @@ pipeline {
 				}
 			}
 		}
+
 	}
 }
