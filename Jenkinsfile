@@ -23,8 +23,10 @@ pipeline {
 
 		stage('Build & Push - Docker') {
 			steps {
-				docker.withDockerRegistry(credentialsId: 'docker-creds') {
-					docker.build('ernestklu/numeric-app:""$GIT_COMMIT""').push('ernestklu/numeric-app:""$GIT_COMMIT""')
+				script {
+					docker.withDockerRegistry(credentialsId: 'docker-creds') {
+						docker.build('ernestklu/numeric-app:""$GIT_COMMIT""').push('ernestklu/numeric-app:""$GIT_COMMIT""')
+				}
 				}
 			}
 		}
