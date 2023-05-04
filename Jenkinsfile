@@ -14,6 +14,13 @@ pipeline {
 				sh 'mvn test'
 			}
 		}
+
+		stage('Test - PIT Mutation') {
+			steps {
+				sh 'mvn org.pitest:pitest-maven:mutationCoverage'
+			}
+		}
+
 	}
 
 	post {
@@ -22,6 +29,7 @@ pipeline {
 			jacoco (
 				execPattern: 'target/jacoco.exec'
 			)
+			pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
 		}
 	}
 
