@@ -21,6 +21,16 @@ pipeline {
 			}
 		}
 
+		stage('Build & Push - Docker') {
+			steps {
+				sh 'sudo docker build -t ernestklu/numeric-application:""$GIT_COMMIT"" .'
+				withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'PASS', usernameVaiable: 'USER')]) {
+					sh "echo $PASS | docker login -u $USER --pasword-stdin"
+				}
+				sh 'sudo docker push ernestklu/numeric-application:""$GIT_COMMIT""'
+			}
+		}
+
 	}
 
 	post {
