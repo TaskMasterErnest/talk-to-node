@@ -12,7 +12,6 @@ pipeline {
 		stage('Test - JaCoCo and JUnit') {
 			steps {
 				sh 'mvn test'
-			}
 				junit 'target/surefire-reports/*.xml'
 				jacoco (
 					execPattern: 'target/jacoco.exec',
@@ -20,6 +19,7 @@ pipeline {
 					sourcePattern: '**/src/main'
 				)
 			}
+		}
 	}
 
 }
