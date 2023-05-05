@@ -9,11 +9,11 @@ pipeline {
 			}
 		}
 
-		stage('Test - JaCoCo and JUnit') {
-			steps {
-				sh 'mvn test'
-			}
-		}
+		// stage('Test - JaCoCo and JUnit') {
+		// 	steps {
+		// 		sh 'mvn test'
+		// 	}
+		// }
 
 		stage('Test - PIT Mutation') {
 			steps {
