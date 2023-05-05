@@ -21,6 +21,7 @@
 		<java.version>1.8</java.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
 		<tomcat.version>9.0.43</tomcat.version>
+		<log4j2.version>2.17.1</log4j2.version>
 	</properties>
 
 	<dependencies>
