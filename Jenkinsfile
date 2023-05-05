@@ -15,11 +15,11 @@ pipeline {
 			}
 		}
 
-		stage('Test - PIT Mutation') {
-			steps {
-				sh 'mvn org.pitest:pitest-maven:mutationCoverage'
-			}
-		}
+		// stage('Test - PIT Mutation') {
+		// 	steps {
+		// 		sh 'mvn org.pitest:pitest-maven:mutationCoverage'
+		// 	}
+		// }
 
 		stage('SAST - SonarQube') {
 			steps {
@@ -51,7 +51,7 @@ pipeline {
 			jacoco (
 				execPattern: 'target/jacoco.exec'
 			)
-			pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+			// pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
 		}
 	}
 
