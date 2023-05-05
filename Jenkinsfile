@@ -24,12 +24,14 @@ pipeline {
 		stage('SAST - SonarQube') {
 			steps {
 				withSonarQubeEnv(credentialsId: 'SonarQube', installationName: 'SonarQube') {
-					sh 'mvn clean verify sonar:sonar \
+					sh 'mvn sonar:sonar \
 							-Dsonar.projectKey=devsecops-node \
 							-Dsonar.host.url=http://35.198.170.179:9000'
 				}
 				timeout(time: 1, unit: 'MINUTES') {
+					script {
           waitForQualityGate abortPipeline: true
+					}
         }
 			}
 		}
