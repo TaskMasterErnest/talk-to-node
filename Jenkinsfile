@@ -28,7 +28,7 @@ pipeline {
 							-Dsonar.projectKey=devsecops-node \
 							-Dsonar.host.url=http://35.198.170.179:9000'
 				}
-				timeout(time: 1, unit: 'MINUTES') {
+				timeout(time: 10, unit: 'SECONDS') {
 					script {
           waitForQualityGate abortPipeline: true
 					}
