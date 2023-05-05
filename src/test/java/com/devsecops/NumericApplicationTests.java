@@ -35,22 +35,22 @@ public class NumericApplicationTests {
     private MockMvc mockMvc;
 
     @Test
-    public void smallerThanOrEqualToFiftyMessage() throws Exception {
+    public void smallerThanOrEqualToFiftyMessageTest() throws Exception {
         this.mockMvc.perform(get("/compare/50")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string("Smaller than or equal to 50"));
+                .andExpect(content().string("<h1>Smaller than or equal to 50</h1>"));
     }
 
     @Test
-    public void greaterThanFiftyMessage() throws Exception {
+    public void greaterThanFiftyMessageTest() throws Exception {
         this.mockMvc.perform(get("/compare/51")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string("Greater than 50"));
+                .andExpect(content().string("<h1>Greater than 50</h1>"));
     }
-    
-@Test
-    public void welcomeMessage() throws Exception {
+
+    @Test
+    public void welcomeMessageTest() throws Exception {
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-            .andExpect(content().string("Kubernetes DevSecOps"));
-}
+                .andExpect(content().string("<h1>Kubernetes DevSecOps</h1>"));
+    }
     
 
 }
