@@ -42,6 +42,12 @@ pipeline {
 			}
 		}
 
+		stage('Vulnerability Check - Trivy') {
+			steps {
+				sh "sudo bash trivy-docker-scan.sh"
+			}
+		}
+
 		stage('Build & Push - Docker') {
 			steps {
 				withDockerRegistry(credentialsId: 'docker-creds', url: "") {
