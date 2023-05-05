@@ -4,7 +4,7 @@ fileignoreconfig:
 - filename: static/passwd
   checksum: b332984c71ef08e1a5f8c343a7f89792d1977b3cdcc6accaad26aa9e39b0352e
 - filename: Jenkinsfile
-  checksum: b01bc7b109974698bdcecd5bc680b6077dc99d4b09833edbb6534742aec210f9
+  checksum: b92e85f4fbc516d5e874d0746b2d03cf3f58d0ac80ba513c52d7d8a14e3fb5ab
 - filename: pom.xml
   checksum: 331c366d2d986e807919a436fb2c6c6a79bc18d32c46fb92621629bd473ffa31
 version: ""
