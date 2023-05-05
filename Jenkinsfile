@@ -36,17 +36,24 @@ pipeline {
 			}
 		}
 
-		stage('Dependency Check - Maven') {
+		stage('Dependency & Vulnerability Checks') {
 			steps {
-				sh 'mvn dependency-check:check'
+				parallel (
+					"Maven Dependency Check": {
+						sh 'mvn dependency-check:check'
+					},
+					"Trivy Docker Image Scan": {
+						sh "sudo bash trivy-docker-scan.sh"
+					}
+				)
 			}
 		}
 
-		stage('Vulnerability Check - Trivy') {
-			steps {
-				sh "sudo bash trivy-docker-scan.sh"
-			}
-		}
+		// stage('Vulnerability Check - Trivy') {
+		// 	steps {
+		// 		sh "sudo bash trivy-docker-scan.sh"
+		// 	}
+		// }
 
 		stage('Build & Push - Docker') {
 			steps {
