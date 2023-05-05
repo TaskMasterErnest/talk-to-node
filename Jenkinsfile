@@ -36,6 +36,12 @@ pipeline {
 			}
 		}
 
+		stage('Dependency Check - Maven') {
+			steps {
+				sh 'mvn dependency-check:check'
+			}
+		}
+
 		stage('Build & Push - Docker') {
 			steps {
 				withDockerRegistry(credentialsId: 'docker-creds', url: "") {
