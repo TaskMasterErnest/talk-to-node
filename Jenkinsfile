@@ -59,7 +59,7 @@ pipeline {
 
 		stage('OPA Conftest - Dockerfile') {
 			steps {
-				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy opa-dockerfile-security.rego Dockerfile'
+				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-dockerfile-security.rego Dockerfile'
 			}
 		}
 
