@@ -18,7 +18,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<!-- <tomcat.version>9.0.43</tomcat.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
 		<log4j2.version>2.16.0</log4j2.version> -->
