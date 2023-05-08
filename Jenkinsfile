@@ -91,7 +91,7 @@ pipeline {
 		stage('Deploy to Kubernetes - DEV') {
 			steps {
 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "bash k8s-deployment.sh"
+					sh "k8s-config/bash k8s-deployment.sh"
 				}
 			}
 		}
