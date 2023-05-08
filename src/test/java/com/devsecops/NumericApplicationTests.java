@@ -73,13 +73,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class NumericApplicationTests {
+class NumericApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void smallerThanOrEqualToFiftyMessage() throws Exception {
+    void smallerThanOrEqualToFiftyMessage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/compare/50"))
                .andDo(MockMvcResultHandlers.print())
                .andExpect(MockMvcResultMatchers.status().isOk())
@@ -87,7 +87,7 @@ public class NumericApplicationTests {
     }
 
     @Test
-    public void greaterThanFiftyMessage() throws Exception {
+    void greaterThanFiftyMessage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/compare/51"))
                .andDo(MockMvcResultHandlers.print())
                .andExpect(MockMvcResultMatchers.status().isOk())
@@ -95,7 +95,7 @@ public class NumericApplicationTests {
     }
     
     @Test
-    public void welcomeMessage() throws Exception {
+    void welcomeMessage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                .andDo(MockMvcResultHandlers.print())
                .andExpect(MockMvcResultMatchers.status().isOk())
