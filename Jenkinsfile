@@ -1,6 +1,15 @@
 pipeline {
 	agent any
 
+	environment {
+		deploymentName = "devsecops"
+		containerName = "devsecops-container"
+		serviceName = "devsecops-svc"
+		imageName = "ernestklu/numeric-application:${GIT_COMMIT}"
+		applicationURL = "http://10.96.147.112"
+		applicationURI = "/increment/99"
+	}
+
 	stages {
 
 		// stage('test') {
@@ -75,6 +84,14 @@ pipeline {
 				withDockerRegistry(credentialsId: 'docker-creds', url: "") {
 					sh 'sudo docker build -t ernestklu/numeric-application:""$GIT_COMMIT"" .'
 					sh 'sudo docker push ernestklu/numeric-application:""$GIT_COMMIT""'
+				}
+			}
+		}
+
+		stage('Deploy to Kubernetes - DEV') {
+			steps {
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+					sh "bash k8s-deployment.sh"
 				}
 			}
 		}
