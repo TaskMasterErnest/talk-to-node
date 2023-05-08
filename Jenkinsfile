@@ -12,6 +12,7 @@ pipeline {
 
 		stage('Build Artifacts - Maven') {
 			steps {
+				echo "Packaging java artifact"
 				sh "mvn clean package -DskipTests=true"
 				archiveArtifacts artifacts: 'target/*jar', followSymlinks: false //persisting the jar file for later downloads
 			}
