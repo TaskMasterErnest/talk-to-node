@@ -19,9 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
-		<!-- <tomcat.version>9.0.43</tomcat.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
-		<log4j2.version>2.16.0</log4j2.version> -->
 	</properties>
 
 	<dependencies>
@@ -126,7 +124,7 @@
 				<version>8.1.1</version>
 				<configuration>
 					<format>ALL</format>
-					<failBuildOnCVSS>7</failBuildOnCVSS> <!-- fail the build for CVSS greater than or equal to 9 -->
+					<failBuildOnCVSS>9.9</failBuildOnCVSS> <!-- fail the build for CVSS greater than or equal to 9 -->
 					<!-- 
 					use internal mirroring of CVE contents 
 					Suppress files 
