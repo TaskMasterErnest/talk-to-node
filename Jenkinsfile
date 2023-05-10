@@ -62,16 +62,19 @@ pipeline {
 					},
 					"Trivy Docker Image Scan": {
 						sh "sudo bash trivy/trivy-docker-scan.sh"
+					},
+					"OPA Conftest - Dockerfile": {
+						sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-dockerfile-security.rego Dockerfile'
 					}
 				)
 			}
 		}
 
-		stage('OPA Conftest - Dockerfile') {
-			steps {
-				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-dockerfile-security.rego Dockerfile'
-			}
-		}
+		// stage('OPA Conftest - Dockerfile') {
+		// 	steps {
+		// 		sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-dockerfile-security.rego Dockerfile'
+		// 	}
+		// }
 
 		// stage('Vulnerability Check - Trivy') {
 		// 	steps {
@@ -85,6 +88,12 @@ pipeline {
 					sh 'sudo docker build -t ernestklu/numeric-application:""$GIT_COMMIT"" .'
 					sh 'sudo docker push ernestklu/numeric-application:""$GIT_COMMIT""'
 				}
+			}
+		}
+
+		stage('OPA Conftest - Kubernetes') {
+			steps {
+				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s_deployment_service.yaml'
 			}
 		}
 
