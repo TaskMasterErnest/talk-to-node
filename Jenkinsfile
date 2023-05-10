@@ -97,6 +97,12 @@ pipeline {
 			}
 		}
 
+		stage('Kubesec Scan - Kubernetes') {
+			steps {
+				sh "bash k8s-config/kubesec-scan.sh"
+			}
+		}
+
 		stage('Deploy to Kubernetes - DEV') {
 			steps {
 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
