@@ -18,4 +18,4 @@ if [[ "${exit_code}" == 1 ]]; then
   exit 1;
 else
   echo "Image scanning passed. No CRITICAL vulnerabilities found"
-fi
+fi;
