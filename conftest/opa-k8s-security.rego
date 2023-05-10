@@ -9,5 +9,5 @@ deny[msg] {
 deny[msg] {
   input.kind = "Deployment"
   not input.spec.template.spec.containers[0].securityContext.runAsNonRoot = true
-  msg = "Containers must not run as root - use runAsNonRoot wihin container security context"
+  msg = "Containers must not run as root - use runAsNonRoot within container security context"
 }
