@@ -93,7 +93,7 @@ pipeline {
 
 		stage('OPA Conftest - Kubernetes') {
 			steps {
-				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s_deployment_service.yaml'
+				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s-config/k8s_deployment_service.yaml'
 			}
 		}
 
