@@ -103,6 +103,12 @@ pipeline {
 			}
 		}
 
+		stage('Trivy Scan - Kubernetes') {
+			steps {
+				sh "bash trivy/trivy-k8s-scan.sh"
+			}
+		}
+
 		stage('Deploy to Kubernetes - DEV') {
 			steps {
 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
