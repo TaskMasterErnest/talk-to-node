@@ -35,8 +35,8 @@
     </exclusions>
     </dependency>
 
-		<dependecy>
-   		<groupId>org.junit.vintage</groupId>
+		<dependency>
+   			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
 				<scope>test</scope>
 				<exclusions>
@@ -45,7 +45,7 @@
 						<artifactId>hamcrest-core</artifactId>
 					</exclusion>
 				</exclusions>
-		</dependecy>
+		</dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
