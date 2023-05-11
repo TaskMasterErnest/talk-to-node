@@ -9,7 +9,7 @@ pipeline {
 		containerName = "devsecops-container"
 		serviceName = "devsecops-svc"
 		imageName = "ernestklu/numeric-application:${GIT_COMMIT}"
-		applicationURL = "http://10.96.147.112"
+		applicationURL = "http://35.198.170.179"
 		applicationURI = "/increment/99"
 	}
 
