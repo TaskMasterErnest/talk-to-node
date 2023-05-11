@@ -148,7 +148,9 @@ pipeline {
 
 		stage('Kubernetes Integration Test - DEV') {
 			steps {
-				sh "bash integration-test/integration-test.sh"
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+					sh "bash integration-test/integration-test.sh"
+				}		
 			}
 		}
 
