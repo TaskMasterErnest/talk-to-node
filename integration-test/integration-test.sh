@@ -6,7 +6,7 @@
 sleep 5s
 
 # get NodePort value from the running service's yaml file
-PORT=$(kubectl -n default get svc ${serviceName} -o json | jq .spec.ports[].nodePort)
+export PORT=$(kubectl -n default get svc ${serviceName} -o json | jq .spec.ports[].nodePort)
 
 # link the port to the URL and URI
 echo $PORT
