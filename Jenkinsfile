@@ -95,29 +95,60 @@ pipeline {
 			}
 		}
 
-		stage('OPA Conftest - Kubernetes') {
+		stage('Security scans - Kubernetes') {
 			steps {
-				sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s-config/k8s_deployment_service.yaml'
+				parallel (
+					"OPA Conftest - Kubernetes": {
+						sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s-config/k8s_deployment_service.yaml'
+					},
+					"Kubesec Scan - Kubernetes": {
+						sh "bash k8s-config/kubesec-scan.sh"
+					},
+					"Trivy Scan - Kubernetes": {
+						sh "bash trivy/trivy-k8s-scan.sh"
+					}
+				)
 			}
 		}
 
-		stage('Kubesec Scan - Kubernetes') {
-			steps {
-				sh "bash k8s-config/kubesec-scan.sh"
-			}
-		}
+		// stage('OPA Conftest - Kubernetes') {
+		// 	steps {
+		// 		sh 'sudo docker run --rm -v $(pwd):/project openpolicyagent/conftest:v0.42.1 test --policy conftest/opa-k8s-security.rego k8s-config/k8s_deployment_service.yaml'
+		// 	}
+		// }
 
-		stage('Trivy Scan - Kubernetes') {
-			steps {
-				sh "bash trivy/trivy-k8s-scan.sh"
-			}
-		}
+		// stage('Kubesec Scan - Kubernetes') {
+		// 	steps {
+		// 		sh "bash k8s-config/kubesec-scan.sh"
+		// 	}
+		// }
+
+		// stage('Trivy Scan - Kubernetes') {
+		// 	steps {
+		// 		sh "bash trivy/trivy-k8s-scan.sh"
+		// 	}
+		// }
 
 		stage('Deploy to Kubernetes - DEV') {
 			steps {
-				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "bash k8s-config/k8s-deployment.sh"
-				}
+				parallel (
+					"Kubernetes deployment": {
+						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+							sh "bash k8s-config/k8s-deployment.sh"
+						}
+					},
+					"Check Rollout Status": {
+						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+							sh "bash k8s-config/k8s-deployment-rollout-status.sh"
+						}
+					}
+				)
+			}
+		}
+
+		stage('Kubernetes Integration Test - DEV') {
+			steps {
+				sh "bash integration-test/integration-test.sh"
 			}
 		}
 
