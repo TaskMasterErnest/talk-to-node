@@ -71,10 +71,16 @@
 
 		<!-- New Springdoc stuff -->
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.7.0</version>
-		</dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.1.0</version>
+   	</dependency>
+
+		<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+      <version>2.1.0</version>
+   </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -91,6 +97,12 @@
       <artifactId>spring-security-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+		<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-security</artifactId>
+      <version>1.7.0</version>
+   	</dependency>
 <!-- ends here -->
   </dependencies>
 
