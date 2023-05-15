@@ -166,13 +166,13 @@ pipeline {
 
 		stage('Testing Slack - Failure') {
 			steps {
-				sh 'exit 1'
+				sh 'exit 0'
 			}
 		}
 
 		stage('Testing Slack - Success') {
 			steps {
-				sh 'exit 0'
+				sh 'exit 1'
 			}
 		}
 
