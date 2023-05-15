@@ -5,3 +5,4 @@
 # You can add your own messages to each rule by appending them after a tab on each line.
 # Here we are ignoring these scans pertaining to headers.
 100000	IGNORE	http://35.198.170.179:32214/
+100001	IGNORE	http://35.198.170.179:32214/
