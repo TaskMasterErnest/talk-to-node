@@ -8,7 +8,7 @@ chmod 777 $(pwd)
 echo $(id -u):$(id -g)
 
 # run the scan
-docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly:w2023-05-09 zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -r zap_report.html
+docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly:w2023-05-09 zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -r zap-report.html
 
 # get the exit code
 exit_code=$?
