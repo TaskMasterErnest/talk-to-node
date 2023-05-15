@@ -11,7 +11,7 @@ echo $(id -u):$(id -g)
 # docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly:w2023-05-09 zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -r zap-report.html
 
 # new scan with rules to ignore
-docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly:w2023-05-09 zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -c zap-rules -r zap-report.html
+docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly:w2023-05-09 zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -c zap/zap-rules -r zap-report.html
 
 # get the exit code
 exit_code=$?
