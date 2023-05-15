@@ -154,6 +154,14 @@ pipeline {
 			}
 		}
 
+		stage('OWASP ZAP - DAST') {
+			steps {
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+					sh "bash zap/zap.sh"
+				}
+			}
+		}
+
 	}
 
 	post {
@@ -164,6 +172,7 @@ pipeline {
 			)
 			pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
 			dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap-report.html', reportName: 'OWASP ZAP REPORT HTML', reportTitles: 'OWASP ZAP REPORT HTML', useWrapperFileDirectly: true])
 		}
  	}
 
