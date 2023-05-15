@@ -170,6 +170,12 @@ pipeline {
 			}
 		}
 
+		stage('Testing Slack') {
+			steps {
+				sh 'exit 0'
+			}
+		}
+
 	}
 
 	post {
