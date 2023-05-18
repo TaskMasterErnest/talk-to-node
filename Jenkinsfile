@@ -172,6 +172,12 @@ pipeline {
 			}
 		}
 
+		stage('CIS Benchmarking - Kubernetes') {
+			steps {
+				sh "bash cis-benchmark/master.sh"
+			}
+		}
+
 	}
 
 	post {
