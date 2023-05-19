@@ -186,7 +186,7 @@ pipeline {
 					"Kubernetes deployment": {
 						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
 							sh "sed -i 's#replace#${imageName}#g' k8s-config/k8s_production_deployment_service.yaml"
-							sh "kubectl -n production -f k8s-config/k8s_production_deployment_service.yaml"
+							sh "kubectl apply -n production -f k8s-config/k8s_production_deployment_service.yaml"
 						}
 					},
 					"Check Rollout Status": {
