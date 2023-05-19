@@ -8,8 +8,10 @@ pipeline {
 
 	environment {
 		deploymentName = "devsecops"
+		prodDeploymentName = "devsecops-prod"
 		containerName = "devsecops-container"
 		serviceName = "devsecops-svc"
+		prodServiceName = "devsecops-svc-prod"
 		imageName = "ernestklu/numeric-application:${GIT_COMMIT}"
 		applicationURL = "http://35.198.170.179"
 		applicationURI = "/increment/99"
