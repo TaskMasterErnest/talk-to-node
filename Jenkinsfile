@@ -178,6 +178,31 @@ pipeline {
 			}
 		}
 
+		stage('Deploy to Kubernetes - PROD') {
+			steps {
+				parallel (
+					"Kubernetes deployment": {
+						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+							sh "bash k8s-config/k8s-production-deployment.sh"
+						}
+					},
+					"Check Rollout Status": {
+						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+							sh "bash k8s-config/k8s-production-deployment-rollout-status.sh"
+						}
+					}
+				)
+			}
+		}
+
+		stage('Kubernetes Integration Test - PROD') {
+			steps {
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+					sh "bash integration-test/production-integration-test.sh"
+				}		
+			}
+		}
+
 	}
 
 	post {
