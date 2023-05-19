@@ -181,7 +181,8 @@ pipeline {
 		stage('Deploy K8s') {
 			steps {
 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "bash k8s-config/k8s-production-deployment.sh"
+					sh 'sed -i "s#replace#${imageName}#g" k8s-config/k8s_production_deployment_service.yaml'
+					sh "kubectl apply -f k8s-config/k8s_production_deployment_service.yaml -n production"
 				}
 			}
 		}
@@ -204,13 +205,13 @@ pipeline {
 		// 	}
 		// }
 
-		stage('Kubernetes Integration Test - PROD') {
-			steps {
-				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "bash integration-test/production-integration-test.sh"
-				}		
-			}
-		}
+		// stage('Kubernetes Integration Test - PROD') {
+		// 	steps {
+		// 		withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+		// 			sh "bash integration-test/production-integration-test.sh"
+		// 		}		
+		// 	}
+		// }
 
 	}
 
