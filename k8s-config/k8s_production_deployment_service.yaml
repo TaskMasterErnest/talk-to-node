@@ -15,21 +15,21 @@ spec:
       labels:
         app: devsecops
     spec:
-      serviceAccountName: production
+      serviceAccountName: default
       volumes:
-      - name: vol
+      - name: kube-vol
         emptyDir: {}
       containers:
       - image: replace
         name: devsecops-container
         volumeMounts:
-          - mountPath: /tmp
-            name: vol
+        - mountPath: /tmp
+          name: kube-vol
         securityContext:
           capabilities:
             drop:
-             - NET_RAW
-          runAsUser: 10002
+            - NET_RAW
+          runAsUser: 10001
           runAsNonRoot: true
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
