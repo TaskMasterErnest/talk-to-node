@@ -11,7 +11,7 @@ exit_code=$?
 if [[ "$exit_code" -ne 0 ]]; then
   echo "deployment ${deploymentName} does NOT exist"
   kubectl -n production apply -f k8s-config/k8s_production_deployment_service.yaml
-else
+elsesss
   #here we confirm if the deployment exists. we just change the image build used for the file
   echo "deployment ${deploymentName} does exist"
   echo "image name = ${imageName}"
