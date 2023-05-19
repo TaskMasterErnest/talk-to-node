@@ -4,7 +4,7 @@ fileignoreconfig:
 - filename: static/passwd
   checksum: b332984c71ef08e1a5f8c343a7f89792d1977b3cdcc6accaad26aa9e39b0352e
 - filename: Jenkinsfile
-  checksum: f2f5c9b92fc4e588aba595398e365b41bb5d3ff7e2492275c41cba9e34f75cd4
+  checksum: 991a95cb9baef82f3e07692939eccfbc3c51a5e866bd7e31ffa7d8c9ad75328b
 - filename: pom.xml
   checksum: 02b37a044c3016610c1b1888344b0e2a1cb8c1978f1088bf9d93746cd7c73511
 - filename: zap/zap.sh
