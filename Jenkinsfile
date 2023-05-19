@@ -180,23 +180,32 @@ pipeline {
 		// 	}
 		// }
 
-		stage('Deploy to Kubernetes - PROD') {
+		stage('Deploy K8s') {
 			steps {
-				parallel (
-					"Kubernetes deployment": {
-						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-							sh "sed -i 's#replace#${imageName}#g' k8s-config/k8s_production_deployment_service.yaml"
-							sh "kubectl apply -n production -f k8s-config/k8s_production_deployment_service.yaml"
-						}
-					},
-					"Check Rollout Status": {
-						withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-							sh "bash k8s-config/k8s-production-deployment-rollout-status.sh"
-						}
-					}
-				)
+				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+					sh "sed -i 's#replace#${imageName}#g' k8s-config/k8s_production_deployment_service.yaml"
+					sh "kubectl apply -n production -f k8s-config/k8s_production_deployment_service.yaml"
+				}
 			}
 		}
+
+		// stage('Deploy to Kubernetes - PROD') {
+		// 	steps {
+		// 		parallel (
+		// 			"Kubernetes deployment": {
+		// 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+		// 					sh "sed -i 's#replace#${imageName}#g' k8s-config/k8s_production_deployment_service.yaml"
+		// 					sh "kubectl apply -n production -f k8s-config/k8s_production_deployment_service.yaml"
+		// 				}
+		// 			},
+		// 			"Check Rollout Status": {
+		// 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+		// 					sh "bash k8s-config/k8s-production-deployment-rollout-status.sh"
+		// 				}
+		// 			}
+		// 		)
+		// 	}
+		// }
 
 		stage('Kubernetes Integration Test - PROD') {
 			steps {
