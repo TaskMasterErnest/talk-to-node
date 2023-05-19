@@ -6,9 +6,9 @@
 sed -i "s#replace#${imageName}#g" k8s-config/k8s_deployment_service.yaml
 
 kubectl -n default get deploy ${deploymentName} > /dev/null
-exit_code = "$?"
+exit_code=$?
 
-if [[ "${exit_code}" -ne 0 ]]; then
+if [[ "$exit_code" -ne 0 ]]; then
   echo "deployment ${deploymentName} does NOT exist"
   kubectl -n default apply -f k8s-config/k8s_deployment_service.yaml
 else
