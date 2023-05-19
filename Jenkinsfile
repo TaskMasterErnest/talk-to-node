@@ -183,8 +183,7 @@ pipeline {
 		stage('Deploy K8s') {
 			steps {
 				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "sed -i 's#replace#${imageName}#g' k8s-config/k8s_production_deployment_service.yaml"
-					sh "kubectl apply -n production -f k8s-config/k8s_production_deployment_service.yaml"
+					sh "bash k8s-config/k8s-production-deployment.sh"
 				}
 			}
 		}
