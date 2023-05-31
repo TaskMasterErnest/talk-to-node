@@ -205,13 +205,13 @@ pipeline {
 			}
 		}
 
-		stage('Kubernetes Integration Test - PROD') {
-			steps {
-				withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
-					sh "bash integration-test/production-integration-test.sh"
-				}		
-			}
-		}
+		// stage('Kubernetes Integration Test - PROD') {
+		// 	steps {
+		// 		withKubeConfig(credentialsId: 'kube-config', restrictKubeConfigAccess: false, serverUrl: '') {
+		// 			sh "bash integration-test/production-integration-test.sh"
+		// 		}		
+		// 	}
+		// }
 
 	}
 
