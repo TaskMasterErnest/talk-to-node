@@ -7,8 +7,12 @@ EXPOSE 8080
 ARG JAR_FILE=target/*.jar
 
 # create a group and add a user to that group
-RUN groupadd -r jenkins-pipeline && useradd -r -g jenkins-pipeline taskmaster
-
+RUN apk add --no-cache --virtual=build-dependencies \
+  shadow \
+  && groupadd -r jenkins-pipeline \
+  && useradd -r -g jenkins-pipeline taskmaster \
+  && apk del build-dependencies
+  
 # use COPY instead of ADD; COPY jar file into homedir of user
 COPY ${JAR_FILE} /home/taskmaster/app.jar
 
