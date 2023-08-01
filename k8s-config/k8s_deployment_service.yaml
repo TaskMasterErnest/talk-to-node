@@ -5,7 +5,7 @@ metadata:
     app: devsecops
   name: devsecops
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: devsecops
@@ -15,9 +15,20 @@ spec:
       labels:
         app: devsecops
     spec:
+      serviceAccountName: default
+      volumes:
+      - name: kube-vol
+        emptyDir: {}
       containers:
       - image: replace
         name: devsecops-container
+        volumeMounts:
+        - mountPath: /tmp
+          name: kube-vol
+        securityContext:
+          runAsUser: 10001
+          runAsNonRoot: true
+          readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service
